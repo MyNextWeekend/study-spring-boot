@@ -1,10 +1,12 @@
 package com.example.studyspringboot.entity;
 
 import com.example.studyspringboot.exception.AppExceptionCodeMsg;
+import lombok.Getter;
 
 /**
  * 统一的返回体
  */
+@Getter
 public class Result<T> {
     private final int code;
     private final String message;

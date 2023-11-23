@@ -1,7 +1,10 @@
 package com.example.studyspringboot.service.impl;
 
 import com.example.studyspringboot.dao.UserInfoMapper;
+import com.example.studyspringboot.entity.Result;
 import com.example.studyspringboot.entity.UserInfo;
+import com.example.studyspringboot.exception.AppException;
+import com.example.studyspringboot.exception.AppExceptionCodeMsg;
 import com.example.studyspringboot.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +28,10 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     @Override
     public Integer insertUser(UserInfo userInfo) {
+        UserInfo u = selectByName(userInfo.getName());
+        if (u != null) {
+            throw new AppException(AppExceptionCodeMsg.USERNAME_ALREADY_EXISTS);
+        }
         return userInfoMapper.insertUser(userInfo);
     }
 
