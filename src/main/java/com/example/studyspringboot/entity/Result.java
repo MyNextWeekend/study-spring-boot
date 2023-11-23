@@ -1,42 +1,50 @@
 package com.example.studyspringboot.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import com.example.studyspringboot.exception.AppExceptionCodeMsg;
 
-@NoArgsConstructor
-@AllArgsConstructor
+/**
+ * 统一的返回体
+ */
 public class Result<T> {
-    private Integer code;
-    private String message;
-    private T data;
+    private final int code;
+    private final String message;
+    private final T data;
 
+    private Result(int code, String message, T data) {  //私有构造方法
+        this.code = code;
+        this.message = message;
+        this.data = data;
+    }
 
     /**
      * 操作成功，有相应数据返回
-     *
-     * @param data 需要返回的数据
-     * @param <E>  范型
-     * @return 返回固定的结构体
      */
-    public static <E> Result<E> success(E data) {
+    public static <T> Result<T> success(T data) {
         return new Result<>(0, "操作成功", data);
     }
 
     /**
      * 操作成功，没有相应数据返回
-     *
-     * @return 返回固定的结构体
      */
-    public static Result success() {
-        return new Result(0, "操作成功", null);
+    public static <T> Result<T> success() {
+        return new Result<>(0, "操作成功", null);
     }
 
     /**
      * 操作失败
-     * @param message 失败的原因
-     * @return
      */
-    public static Result fail(String message) {
-        return new Result(-1, message, null);
+    public static <T> Result<T> error(int code, String message) {
+        return new Result<>(code, message, null);
+    }
+
+
+    /**
+     * 操作失败
+     *
+     * @param appExceptionCodeMsg 异常情况枚举
+     * @return 返回固定的结构体
+     */
+    public static <T> Result<T> error(AppExceptionCodeMsg appExceptionCodeMsg) {
+        return new Result<>(appExceptionCodeMsg.getCode(), appExceptionCodeMsg.getMsg(), null);
     }
 }
