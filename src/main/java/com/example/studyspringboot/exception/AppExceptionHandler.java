@@ -1,6 +1,9 @@
 package com.example.studyspringboot.exception;
 
+import com.example.studyspringboot.controller.UserInfoController;
 import com.example.studyspringboot.entity.Result;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -17,12 +20,14 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 // 此处使用 RestControllerAdvice = ControllerAdvice + ResponseBody
 @RestControllerAdvice
 public class AppExceptionHandler {
+    private final Logger logger = LoggerFactory.getLogger(UserInfoController.class);
 
     @ExceptionHandler(value = {Exception.class})  // value 可以指定处理哪种异常
     public <T> Result<T> exceptionHandler(Exception e) {
         if (e instanceof AppException exception) { // 判断是不是自定义异常
             return Result.error(exception.getCode(), exception.getMsg());
         }
+        logger.error("error:", e);
         return Result.error(500, "服务器内部异常");
     }
 }
