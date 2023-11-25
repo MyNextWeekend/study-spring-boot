@@ -16,7 +16,7 @@ import java.util.concurrent.Future;
 
 @Service
 public class TeacherServiceImpl implements TeacherService {
-    private final Logger logger = LoggerFactory.getLogger(UserInfoController.class);
+    private final Logger logger = LoggerFactory.getLogger(TeacherServiceImpl.class);
 
     @Autowired
     private TeacherMapper teacherMapper;
@@ -40,6 +40,7 @@ public class TeacherServiceImpl implements TeacherService {
     public Future<String> helloAsyncAndResult(String name) throws InterruptedException {
         logger.info("func helloAsyncAndResult start ..." + name);
         Thread.sleep(1 * 1000);
+        int a = 1 / 0;
         logger.info("func helloAsyncAndResult end !!!" + name);
         return new AsyncResult<>(name);
     }

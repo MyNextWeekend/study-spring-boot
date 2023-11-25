@@ -17,7 +17,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 @Configuration
 //EnableAsync // 启动类或者这里开启异步支持都行
 public class AsyncConfiguration implements AsyncConfigurer {
-    private final Logger logger = LoggerFactory.getLogger(UserInfoController.class);
+    private final Logger logger = LoggerFactory.getLogger(AsyncConfiguration.class);
 
     @Bean(name = "asyncPoolTaskExecutor") //线程池注册并取名
     public ThreadPoolTaskExecutor executor() {

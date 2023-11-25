@@ -15,7 +15,7 @@ import java.util.concurrent.Future;
 
 @SpringBootTest
 class TeacherServiceTest {
-    private final Logger logger = LoggerFactory.getLogger(UserInfoController.class);
+    private final Logger logger = LoggerFactory.getLogger(TeacherServiceTest.class);
 
     @Autowired
     private TeacherService teacherService;
@@ -23,7 +23,7 @@ class TeacherServiceTest {
     @Test
     public void selectAllTest() {
         List<Teacher> teachers = teacherService.selectAll();
-        System.out.println(teachers);
+        logger.info(teachers.toString());
     }
 
     @Test

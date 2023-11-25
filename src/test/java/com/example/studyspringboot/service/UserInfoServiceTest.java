@@ -2,6 +2,8 @@ package com.example.studyspringboot.service;
 
 import com.example.studyspringboot.entity.UserInfo;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
@@ -13,6 +15,8 @@ import java.util.List;
 @SpringBootTest
 @Transactional //使用回滚注解@Rollback，配合事务注解@Transactional，来回滚事务
 public class UserInfoServiceTest {
+    private final Logger logger = LoggerFactory.getLogger(UserInfoServiceTest.class);
+
     @Autowired
     private UserInfoService userInfoService;
 

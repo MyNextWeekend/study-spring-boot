@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 // 此处使用 RestControllerAdvice = ControllerAdvice + ResponseBody
 @RestControllerAdvice
 public class AppExceptionHandler {
-    private final Logger logger = LoggerFactory.getLogger(UserInfoController.class);
+    private final Logger logger = LoggerFactory.getLogger(AppExceptionHandler.class);
 
     @ExceptionHandler(value = {Exception.class})  // value 可以指定处理哪种异常
     public <T> Result<T> exceptionHandler(Exception e) {
