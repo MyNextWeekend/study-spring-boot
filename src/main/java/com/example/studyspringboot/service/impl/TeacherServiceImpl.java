@@ -1,6 +1,5 @@
 package com.example.studyspringboot.service.impl;
 
-import com.example.studyspringboot.controller.UserInfoController;
 import com.example.studyspringboot.dao.TeacherMapper;
 import com.example.studyspringboot.entity.Teacher;
 import com.example.studyspringboot.service.TeacherService;

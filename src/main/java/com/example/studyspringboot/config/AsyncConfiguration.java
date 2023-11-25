@@ -1,6 +1,5 @@
 package com.example.studyspringboot.config;
 
-import com.example.studyspringboot.controller.UserInfoController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;

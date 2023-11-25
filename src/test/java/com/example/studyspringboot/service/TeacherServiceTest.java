@@ -1,6 +1,5 @@
 package com.example.studyspringboot.service;
 
-import com.example.studyspringboot.controller.UserInfoController;
 import com.example.studyspringboot.entity.Teacher;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -9,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 

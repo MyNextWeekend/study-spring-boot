@@ -2,8 +2,6 @@ package com.example.studyspringboot;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class ConcurrentHashMapTest {

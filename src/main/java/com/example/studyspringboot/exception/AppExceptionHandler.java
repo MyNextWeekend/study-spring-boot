@@ -1,6 +1,5 @@
 package com.example.studyspringboot.exception;
 
-import com.example.studyspringboot.controller.UserInfoController;
 import com.example.studyspringboot.entity.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
