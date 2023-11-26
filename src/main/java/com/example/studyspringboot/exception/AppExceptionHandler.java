@@ -1,10 +1,19 @@
 package com.example.studyspringboot.exception;
 
 import com.example.studyspringboot.entity.Result;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.validation.BindException;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import java.util.stream.Collectors;
 
 /**
  * ControllerAdvice 拆分开来就是Controller Advice，
@@ -21,6 +30,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class AppExceptionHandler {
     private final Logger logger = LoggerFactory.getLogger(AppExceptionHandler.class);
 
+    /**
+     * 处理自定义异常以及未知异常
+     */
     @ExceptionHandler(value = {Exception.class})  // value 可以指定处理哪种异常
     public <T> Result<T> exceptionHandler(Exception e) {
         if (e instanceof AppException exception) { // 判断是不是自定义异常
@@ -28,5 +40,47 @@ public class AppExceptionHandler {
         }
         logger.error("error:", e);
         return Result.error(500, "服务器内部异常");
+    }
+
+    /**
+     * 处理 GET请求参数 缺失
+     */
+    @ExceptionHandler(value = MissingServletRequestParameterException.class)
+    public <T> Result<T> handleRequestParameterException(MissingServletRequestParameterException e) {
+        return Result.error(HttpStatus.BAD_REQUEST.value(), e.getMessage());
+    }
+
+    /**
+     * 处理 GET单个参数 校验
+     */
+    @ExceptionHandler(value = ConstraintViolationException.class)
+    public <T> Result<T> handleValidationException(ConstraintViolationException e) {
+        String errorMassage = e.getConstraintViolations().stream()
+                .map(ConstraintViolation::getMessage)
+                .collect(Collectors.joining("; "));
+        return Result.error(HttpStatus.BAD_REQUEST.value(), errorMassage);
+    }
+
+    /**
+     * 处理 json请求体参数 校验
+     */
+    @ExceptionHandler(value = MethodArgumentNotValidException.class)
+    public <T> Result<T> handleValidationBodyException(MethodArgumentNotValidException e) {
+        String errorMassage = e.getBindingResult().getAllErrors().stream()
+                .map(ObjectError::getDefaultMessage)
+                .collect(Collectors.joining("; "));
+        return Result.error(HttpStatus.BAD_REQUEST.value(), errorMassage);
+    }
+
+
+    /**
+     * 处理 From实体类 校验
+     */
+    @ExceptionHandler(value = BindException.class)
+    public <T> Result<T> handleValidationBeanException(BindException e) {
+        String errorMassage = e.getAllErrors().stream()
+                .map(ObjectError::getDefaultMessage)
+                .collect(Collectors.joining("; "));
+        return Result.error(HttpStatus.BAD_REQUEST.value(), errorMassage);
     }
 }
