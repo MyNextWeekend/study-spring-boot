@@ -19,7 +19,7 @@ public class UserInfo {
 
     @NotBlank(message = "密码不能为空", groups = {Insert.class, Update.class}) // 指定规则对多个分组生效
     @Length(message = "密码不能超过{max}个字符", max = 10)
-    @JsonIgnore //json反序列化的时候忽略
+//    @JsonIgnore //json 序列化和反序列化 都会忽略
     private String pwd;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+08:00")

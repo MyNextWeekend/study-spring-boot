@@ -12,6 +12,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import java.util.stream.Collectors;
 
@@ -47,11 +48,19 @@ public class AppExceptionHandler {
      */
     @ExceptionHandler(value = MissingServletRequestParameterException.class)
     public <T> Result<T> handleRequestParameterException(MissingServletRequestParameterException e) {
-        return Result.error(HttpStatus.BAD_REQUEST.value(), e.getMessage());
+        return Result.error(HttpStatus.BAD_REQUEST.value(), "缺失字段:"+e.getParameterName());
     }
 
     /**
-     * 处理 GET单个参数 校验
+     * 处理 GET类型转化 异常
+     */
+    @ExceptionHandler(value = MethodArgumentTypeMismatchException.class)
+    public <T> Result<T> handMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException e) {
+        return Result.error(HttpStatus.BAD_REQUEST.value(), "字段类型转换异常:"+e.getName());
+    }
+
+    /**
+     * 处理 GET单个参数 异常
      */
     @ExceptionHandler(value = ConstraintViolationException.class)
     public <T> Result<T> handleValidationException(ConstraintViolationException e) {
@@ -62,7 +71,7 @@ public class AppExceptionHandler {
     }
 
     /**
-     * 处理 json请求体参数 校验
+     * 处理 json请求体参数 异常
      */
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
     public <T> Result<T> handleValidationBodyException(MethodArgumentNotValidException e) {
@@ -74,7 +83,7 @@ public class AppExceptionHandler {
 
 
     /**
-     * 处理 From实体类 校验
+     * 处理 From实体类 异常
      */
     @ExceptionHandler(value = BindException.class)
     public <T> Result<T> handleValidationBeanException(BindException e) {
