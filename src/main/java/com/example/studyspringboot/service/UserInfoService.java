@@ -1,6 +1,7 @@
 package com.example.studyspringboot.service;
 
 import com.example.studyspringboot.entity.UserInfo;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ public interface UserInfoService {
      *
      * @return 所有用户
      */
-    List<UserInfo> selectAll();
+    PageInfo<UserInfo> selectAll(Integer pageNum, Integer pageSize);
 
     /**
      * 查询用户名是否存在

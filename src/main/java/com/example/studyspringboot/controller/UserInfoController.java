@@ -5,14 +5,13 @@ import com.example.studyspringboot.entity.UserInfo;
 import com.example.studyspringboot.exception.AppException;
 import com.example.studyspringboot.exception.AppExceptionCodeMsg;
 import com.example.studyspringboot.service.UserInfoService;
+import com.github.pagehelper.PageInfo;
 import jakarta.validation.constraints.Max;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 
 @Validated // 校验参数
@@ -45,8 +44,8 @@ public class UserInfoController {
     }
 
     @PostMapping("/selectAll")
-    public Result<?> selectAll() {
-        List<UserInfo> userInfos = userInfoService.selectAll();
+    public Result<?> selectAll(Integer pageNum, Integer pageSize) {
+        PageInfo<UserInfo> userInfos = userInfoService.selectAll(pageNum, pageSize);
         return Result.success(userInfos);
     }
 

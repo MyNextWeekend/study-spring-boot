@@ -8,7 +8,7 @@
 
     <!--id为对应的方法名-->
     <select id="selectAll" resultType="com.example.studyspringboot.entity.UserInfo">
-        select * from user_info;
+        select * from user_info
     </select>
 
     <select id="selectByName" resultType="com.example.studyspringboot.entity.UserInfo">

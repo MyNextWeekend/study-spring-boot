@@ -1,6 +1,7 @@
 package com.example.studyspringboot.service;
 
 import com.example.studyspringboot.entity.UserInfo;
+import com.github.pagehelper.PageInfo;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +11,6 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-import java.util.List;
 
 @SpringBootTest
 @Transactional //使用回滚注解@Rollback，配合事务注解@Transactional，来回滚事务
@@ -22,7 +22,7 @@ public class UserInfoServiceTest {
 
     @Test
     public void selectAll() {
-        List<UserInfo> userInfo = userInfoService.selectAll();
+        PageInfo<UserInfo> userInfo = userInfoService.selectAll(2, 1);
         System.out.println(userInfo);
     }
 

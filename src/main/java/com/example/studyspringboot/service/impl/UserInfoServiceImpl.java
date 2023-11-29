@@ -5,6 +5,8 @@ import com.example.studyspringboot.entity.UserInfo;
 import com.example.studyspringboot.exception.AppException;
 import com.example.studyspringboot.exception.AppExceptionCodeMsg;
 import com.example.studyspringboot.service.UserInfoService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +22,10 @@ public class UserInfoServiceImpl implements UserInfoService {
     private UserInfoMapper userInfoMapper;
 
     @Override
-    public List<UserInfo> selectAll() {
-        return userInfoMapper.selectAll();
+    public PageInfo<UserInfo> selectAll(Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum, pageSize); // 开启分页查询
+        List<UserInfo> userInfos = userInfoMapper.selectAll(); //正常查询分页 （注意sql语句结尾不能写分号）
+        return new PageInfo<>(userInfos); // 返回一个PageInfo对象，包含更详细的分页信息
     }
 
     @Override
