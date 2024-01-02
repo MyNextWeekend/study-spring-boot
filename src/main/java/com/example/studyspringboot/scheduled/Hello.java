@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 public class Hello {
     private final Logger logger = LoggerFactory.getLogger(Hello.class);
 
-    @Async(value = "asyncPoolTaskExecutor")
+    @Async(value = "scheduleTaskExecutor")
     @Scheduled(cron = "0/30 * * * * *") //每30秒启动一次
 //    @Scheduled(fixedRate = 2 * 1000)
     public void haha() {

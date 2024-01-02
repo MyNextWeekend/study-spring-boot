@@ -22,14 +22,14 @@ public class AsyncConfiguration implements AsyncConfigurer {
     private final Logger logger = LoggerFactory.getLogger(AsyncConfiguration.class);
 
     @Bean(name = "asyncPoolTaskExecutor") //线程池注册并取名
-    public ThreadPoolTaskExecutor executor() {
+    public ThreadPoolTaskExecutor asyncPoolTaskExecutor() {
         ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
         taskExecutor.setCorePoolSize(2);    //核心线程数
         taskExecutor.setMaxPoolSize(10);    //线程池维护线程的最大数量,只有在缓冲队列满了之后才会申请超过核心线程数的线程
         taskExecutor.setQueueCapacity(50);  //缓存队列
         taskExecutor.setKeepAliveSeconds(200);  //许的空闲时间,当超过了核心线程出之外的线程在空闲时间到达之后会被销毁
         taskExecutor.setTaskDecorator(new MdcTaskDecorator());    //线程装饰：针对线程的 开始和结束 做一些处理
-        taskExecutor.setThreadNamePrefix("async-"); //异步方法内部线程名称
+        taskExecutor.setThreadNamePrefix("async--"); //异步方法内部线程名称
         /**
          * 当线程池的任务缓存队列已满并且线程池中的线程数目达到maximumPoolSize，如果还有任务到来就会采取任务拒绝策略
          * 通常有以下四种策略：
@@ -43,12 +43,26 @@ public class AsyncConfiguration implements AsyncConfigurer {
         return taskExecutor;
     }
 
+    @Bean(name = "scheduleTaskExecutor") //线程池注册并取名
+    public ThreadPoolTaskExecutor scheduleTaskExecutor() {
+        ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
+        taskExecutor.setCorePoolSize(2);    //核心线程数
+        taskExecutor.setMaxPoolSize(10);    //线程池维护线程的最大数量,只有在缓冲队列满了之后才会申请超过核心线程数的线程
+        taskExecutor.setQueueCapacity(50);  //缓存队列
+        taskExecutor.setKeepAliveSeconds(200);  //许的空闲时间,当超过了核心线程出之外的线程在空闲时间到达之后会被销毁
+        taskExecutor.setTaskDecorator(new MdcTaskDecorator());    //线程装饰：针对线程的 开始和结束 做一些处理
+        taskExecutor.setThreadNamePrefix("schedule--"); //异步方法内部线程名称
+        taskExecutor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
+        taskExecutor.initialize();  // 初始化initialize()方法会启动所有配置的线程
+        return taskExecutor;
+    }
+
     /**
      * 指定默认线程池
      */
     @Override
     public Executor getAsyncExecutor() {
-        return executor();
+        return asyncPoolTaskExecutor();
     }
 
     /**
