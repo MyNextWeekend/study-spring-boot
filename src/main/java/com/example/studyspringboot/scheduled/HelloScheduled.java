@@ -12,8 +12,8 @@ import org.springframework.stereotype.Component;
  * @author weekend
  */
 @Component //交由springboot管理
-public class Hello {
-    private final Logger logger = LoggerFactory.getLogger(Hello.class);
+public class HelloScheduled {
+    private final Logger logger = LoggerFactory.getLogger(HelloScheduled.class);
 
     @Async(value = "scheduleTaskExecutor")
     @Scheduled(cron = "0/30 * * * * *") //每30秒启动一次
