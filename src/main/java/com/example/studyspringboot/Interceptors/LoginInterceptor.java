@@ -8,6 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  * 拦截器
+ * @author weekend
  */
 @Component //需要被spring接管
 public class LoginInterceptor implements HandlerInterceptor {
@@ -18,7 +19,6 @@ public class LoginInterceptor implements HandlerInterceptor {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        System.out.println(request.getHeaderNames());
         // 请求进来之前do_something
 
         //验证token
@@ -34,7 +34,6 @@ public class LoginInterceptor implements HandlerInterceptor {
      */
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        //do_something
     }
 
     /**
@@ -43,7 +42,5 @@ public class LoginInterceptor implements HandlerInterceptor {
      */
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        // do_something
-
     }
 }
