@@ -5,6 +5,7 @@ import lombok.Getter;
 
 /**
  * 自定义异常枚举
+ * @author weekend
  */
 @Getter
 @AllArgsConstructor
