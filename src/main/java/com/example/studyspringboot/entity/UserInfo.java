@@ -1,11 +1,11 @@
 package com.example.studyspringboot.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.groups.Default;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.groups.Default;
 
 @Data
 public class UserInfo {

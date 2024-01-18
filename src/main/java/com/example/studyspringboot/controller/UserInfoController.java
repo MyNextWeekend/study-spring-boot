@@ -6,12 +6,13 @@ import com.example.studyspringboot.exception.AppException;
 import com.example.studyspringboot.exception.AppExceptionCodeMsg;
 import com.example.studyspringboot.service.UserInfoService;
 import com.github.pagehelper.PageInfo;
-import jakarta.validation.constraints.Max;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.constraints.Max;
 
 
 @Validated // 校验参数

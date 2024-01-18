@@ -1,8 +1,6 @@
 package com.example.studyspringboot.exception;
 
 import com.example.studyspringboot.entity.Result;
-import jakarta.validation.ConstraintViolation;
-import jakarta.validation.ConstraintViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -14,6 +12,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 import java.util.stream.Collectors;
 
 /**
@@ -36,8 +36,9 @@ public class AppExceptionHandler {
      */
     @ExceptionHandler(value = {Exception.class})  // value 可以指定处理哪种异常
     public <T> Result<T> exceptionHandler(Exception e) {
-        if (e instanceof AppException exception) { // 判断是不是自定义异常
-            return Result.error(exception.getCode(), exception.getMsg());
+        if (e instanceof AppException) { // 判断是不是自定义异常
+            AppException e1 = (AppException) e;
+            return Result.error(e1.getCode(), e1.getMsg());
         }
         logger.error("error:", e);
         return Result.error(500, "服务器内部异常");
@@ -48,7 +49,7 @@ public class AppExceptionHandler {
      */
     @ExceptionHandler(value = MissingServletRequestParameterException.class)
     public <T> Result<T> handleRequestParameterException(MissingServletRequestParameterException e) {
-        return Result.error(HttpStatus.BAD_REQUEST.value(), "缺失字段:"+e.getParameterName());
+        return Result.error(HttpStatus.BAD_REQUEST.value(), "缺失字段:" + e.getParameterName());
     }
 
     /**
@@ -56,7 +57,7 @@ public class AppExceptionHandler {
      */
     @ExceptionHandler(value = MethodArgumentTypeMismatchException.class)
     public <T> Result<T> handMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException e) {
-        return Result.error(HttpStatus.BAD_REQUEST.value(), "字段类型转换异常:"+e.getName());
+        return Result.error(HttpStatus.BAD_REQUEST.value(), "字段类型转换异常:" + e.getName());
     }
 
     /**
