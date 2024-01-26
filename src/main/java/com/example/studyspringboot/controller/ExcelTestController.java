@@ -1,6 +1,8 @@
 package com.example.studyspringboot.controller;
 
 import com.example.studyspringboot.entity.Result;
+import com.example.studyspringboot.exception.AppException;
+import com.example.studyspringboot.exception.AppExceptionCodeMsg;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +25,7 @@ public class ExcelTestController {
     public Result<String> uploadExcel(@RequestParam("file") MultipartFile file) {
         String filename = file.getOriginalFilename();
         if (null == filename || (!filename.endsWith(".xlsx") && !filename.endsWith(".xls"))) {
-            return Result.error(10001, "文件格式错误");
+            throw new AppException(AppExceptionCodeMsg.INVALID_FILE);
         }
         if (file.getSize() > 1024 * 1024 * 10) {
             return Result.error(10002, "文件大小超过10M");

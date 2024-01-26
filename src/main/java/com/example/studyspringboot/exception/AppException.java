@@ -4,6 +4,9 @@ import lombok.Getter;
 
 /**
  * 自定义异常类
+ *
+ * @author weekend
+ * @date 2024/01/26
  */
 @Getter
 public class AppException extends RuntimeException {
