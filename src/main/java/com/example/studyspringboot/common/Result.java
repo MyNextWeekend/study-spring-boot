@@ -4,6 +4,9 @@ import lombok.Getter;
 
 /**
  * 统一的返回体
+ *
+ * @author weekend
+ * @date 2024/01/27
  */
 @Getter
 public class Result<T> {

@@ -22,7 +22,7 @@ public class BookDto {
 
     private String description;
 
-    @Range(min = 1, max = 2000, message = "页数在1-2000之间")
+    @Range(min = 1, max = 2000, message = "页数在{min}-{max}之间")
     private Integer totalPage;
 
     private String language;

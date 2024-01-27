@@ -23,11 +23,11 @@ public class BookUserDto {
     private String name;
 
     @NotNull(message = "用户年龄不能为空")
-    @Range(min = 1, max = 200, message = "用户年龄1-200之间")
+    @Range(min = 1, max = 200, message = "用户年龄{min}-{max}之间")
     private Integer age;
 
     @NotBlank(message = "用户性别不能为空")
-    @Length(max = 3, message = "用户性别不能超过3个字符")
+    @Length(max = 3, message = "用户性别不能超过{max}个字符")
     private String sex;
 
     @NotNull(message = "用户出生日期不能为空")
