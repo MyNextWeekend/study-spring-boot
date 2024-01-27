@@ -32,8 +32,8 @@ import java.util.stream.Collectors;
 
 // 此处使用 RestControllerAdvice = ControllerAdvice + ResponseBody
 @RestControllerAdvice
-public class AppExceptionHandler {
-    private final Logger logger = LoggerFactory.getLogger(AppExceptionHandler.class);
+public class ResponseAdvice {
+    private final Logger logger = LoggerFactory.getLogger(ResponseAdvice.class);
 
     /**
      * 应用程序异常处理程序
