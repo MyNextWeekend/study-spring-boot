@@ -2,8 +2,8 @@ package com.example.studyspringboot.service.impl;
 
 import com.example.studyspringboot.dao.UserInfoMapper;
 import com.example.studyspringboot.entity.UserInfo;
-import com.example.studyspringboot.exception.AppException;
-import com.example.studyspringboot.exception.ReturnCodeMsg;
+import com.example.studyspringboot.common.AppException;
+import com.example.studyspringboot.common.ReturnCodeMsg;
 import com.example.studyspringboot.service.UserInfoService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;

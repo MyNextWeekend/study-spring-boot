@@ -1,7 +1,7 @@
 package com.example.studyspringboot.controller;
 
 import com.example.studyspringboot.dto.BookUserDto;
-import com.example.studyspringboot.entity.Result;
+import com.example.studyspringboot.common.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;

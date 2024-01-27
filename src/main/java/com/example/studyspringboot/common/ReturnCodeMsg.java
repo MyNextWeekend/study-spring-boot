@@ -1,4 +1,4 @@
-package com.example.studyspringboot.exception;
+package com.example.studyspringboot.common;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

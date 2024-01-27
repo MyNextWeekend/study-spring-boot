@@ -1,8 +1,8 @@
 package com.example.studyspringboot.controller;
 
-import com.example.studyspringboot.entity.Result;
-import com.example.studyspringboot.exception.AppException;
-import com.example.studyspringboot.exception.ReturnCodeMsg;
+import com.example.studyspringboot.common.Result;
+import com.example.studyspringboot.common.AppException;
+import com.example.studyspringboot.common.ReturnCodeMsg;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

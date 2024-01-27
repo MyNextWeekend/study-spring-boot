@@ -1,9 +1,9 @@
 package com.example.studyspringboot.controller;
 
-import com.example.studyspringboot.entity.Result;
+import com.example.studyspringboot.common.Result;
 import com.example.studyspringboot.entity.UserInfo;
-import com.example.studyspringboot.exception.AppException;
-import com.example.studyspringboot.exception.ReturnCodeMsg;
+import com.example.studyspringboot.common.AppException;
+import com.example.studyspringboot.common.ReturnCodeMsg;
 import com.example.studyspringboot.service.UserInfoService;
 import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;

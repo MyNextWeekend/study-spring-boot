@@ -1,6 +1,5 @@
-package com.example.studyspringboot.entity;
+package com.example.studyspringboot.common;
 
-import com.example.studyspringboot.exception.ReturnCodeMsg;
 import lombok.Getter;
 
 /**

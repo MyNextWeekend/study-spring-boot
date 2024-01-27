@@ -1,6 +1,5 @@
-package com.example.studyspringboot.exception;
+package com.example.studyspringboot.common;
 
-import com.example.studyspringboot.entity.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -32,8 +31,8 @@ import java.util.stream.Collectors;
 
 // 此处使用 RestControllerAdvice = ControllerAdvice + ResponseBody
 @RestControllerAdvice
-public class ResponseAdvice {
-    private final Logger logger = LoggerFactory.getLogger(ResponseAdvice.class);
+public class AppExceptionHandler {
+    private final Logger logger = LoggerFactory.getLogger(AppExceptionHandler.class);
 
     /**
      * 应用程序异常处理程序

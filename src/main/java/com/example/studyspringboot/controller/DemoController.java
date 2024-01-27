@@ -1,6 +1,6 @@
 package com.example.studyspringboot.controller;
 
-import com.example.studyspringboot.entity.Result;
+import com.example.studyspringboot.common.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
