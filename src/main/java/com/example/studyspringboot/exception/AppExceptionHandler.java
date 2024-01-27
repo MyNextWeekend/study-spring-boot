@@ -36,16 +36,20 @@ public class AppExceptionHandler {
     private final Logger logger = LoggerFactory.getLogger(AppExceptionHandler.class);
 
     /**
-     * 处理自定义异常以及未知异常
+     * 应用程序异常处理程序
+     */
+    @ExceptionHandler(value = {AppException.class})
+    public <T> Result<T> appExceptionHandler(AppException e) {
+        return Result.error(e.getCode(), e.getMsg());
+    }
+
+    /**
+     * 处理未知异常
      */
     @ExceptionHandler(value = {Exception.class})  // value 可以指定处理哪种异常
     public <T> Result<T> exceptionHandler(Exception e) {
-        if (e instanceof AppException) { // 判断是不是自定义异常
-            AppException e1 = (AppException) e;
-            return Result.error(e1.getCode(), e1.getMsg());
-        }
-        logger.error("error:", e);
-        return Result.error(500, "服务器内部异常");
+        logger.error(e.getMessage(), e);
+        return Result.error(ReturnCodeMsg.RC500);
     }
 
     /**
@@ -57,7 +61,7 @@ public class AppExceptionHandler {
     }
 
     /**
-     * 处理 GET类型转化 异常
+     * 处理 GET 参数类型不匹配异常
      */
     @ExceptionHandler(value = MethodArgumentTypeMismatchException.class)
     public <T> Result<T> handMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException e) {
@@ -65,7 +69,7 @@ public class AppExceptionHandler {
     }
 
     /**
-     * 处理 GET单个参数 异常
+     * 处理 GET单个参数 验证异常
      */
     @ExceptionHandler(value = ConstraintViolationException.class)
     public <T> Result<T> handleValidationException(ConstraintViolationException e) {
