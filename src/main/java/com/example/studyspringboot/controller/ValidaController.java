@@ -1,6 +1,6 @@
 package com.example.studyspringboot.controller;
 
-import com.example.studyspringboot.entity.BookUserEntity;
+import com.example.studyspringboot.dto.BookUserDto;
 import com.example.studyspringboot.entity.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ValidaController {
 
     @PostMapping("/test")
-    public Result<BookUserEntity> test(@RequestBody @Validated BookUserEntity bookUser) {
+    public Result<BookUserDto> test(@RequestBody @Validated BookUserDto bookUser) {
         log.info("bookUser:{}", bookUser);
 
         return Result.success(bookUser);

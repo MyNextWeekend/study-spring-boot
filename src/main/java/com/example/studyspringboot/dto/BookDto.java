@@ -1,4 +1,4 @@
-package com.example.studyspringboot.entity;
+package com.example.studyspringboot.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
@@ -16,7 +16,7 @@ import java.util.Date;
  * @date 2024/01/27
  */
 @Data
-public class BookEntity {
+public class BookDto {
     @NotBlank(message = "书名不能为空")
     private String name;
 

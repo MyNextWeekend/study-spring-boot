@@ -1,4 +1,4 @@
-package com.example.studyspringboot.entity;
+package com.example.studyspringboot.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
@@ -17,7 +17,7 @@ import java.util.List;
  * @date 2024/01/27
  */
 @Data
-public class BookUserEntity {
+public class BookUserDto {
 
     @NotBlank(message = "用户姓名不能为空")
     private String name;
@@ -37,5 +37,5 @@ public class BookUserEntity {
 
     @Valid
     @NotEmpty(message = "用户图书不能为空")
-    private List<BookEntity> books;
+    private List<BookDto> books;
 }
