@@ -13,10 +13,10 @@ public class AppException extends RuntimeException {
     private final int code;
     private final String msg;
 
-    public AppException(AppExceptionCodeMsg appExceptionCodeMsg) {
+    public AppException(ReturnCodeMsg returnCodeMsg) {
         super();
-        this.code = appExceptionCodeMsg.getCode();
-        this.msg = appExceptionCodeMsg.getMsg();
+        this.code = returnCodeMsg.getCode();
+        this.msg = returnCodeMsg.getMsg();
     }
 
     public AppException(int code, String msg) {

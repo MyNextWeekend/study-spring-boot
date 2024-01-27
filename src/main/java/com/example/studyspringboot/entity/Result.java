@@ -1,6 +1,6 @@
 package com.example.studyspringboot.entity;
 
-import com.example.studyspringboot.exception.AppExceptionCodeMsg;
+import com.example.studyspringboot.exception.ReturnCodeMsg;
 import lombok.Getter;
 
 /**
@@ -43,10 +43,10 @@ public class Result<T> {
     /**
      * 操作失败
      *
-     * @param appExceptionCodeMsg 异常情况枚举
+     * @param returnCodeMsg 异常情况枚举
      * @return 返回固定的结构体
      */
-    public static <T> Result<T> error(AppExceptionCodeMsg appExceptionCodeMsg) {
-        return new Result<>(appExceptionCodeMsg.getCode(), appExceptionCodeMsg.getMsg(), null);
+    public static <T> Result<T> error(ReturnCodeMsg returnCodeMsg) {
+        return new Result<>(returnCodeMsg.getCode(), returnCodeMsg.getMsg(), null);
     }
 }

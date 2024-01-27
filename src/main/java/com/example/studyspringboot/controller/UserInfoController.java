@@ -3,7 +3,7 @@ package com.example.studyspringboot.controller;
 import com.example.studyspringboot.entity.Result;
 import com.example.studyspringboot.entity.UserInfo;
 import com.example.studyspringboot.exception.AppException;
-import com.example.studyspringboot.exception.AppExceptionCodeMsg;
+import com.example.studyspringboot.exception.ReturnCodeMsg;
 import com.example.studyspringboot.service.UserInfoService;
 import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
@@ -56,7 +56,7 @@ public class UserInfoController {
         logger.info("请求进来了。。。");
         System.out.println("收到的参数是：" + id + age);
         if (1 == id) {
-            throw new AppException(AppExceptionCodeMsg.USERNAME_NOT_EXISTS);
+            throw new AppException(ReturnCodeMsg.USERNAME_NOT_EXISTS);
         }
         if (2 == id) {
             int a = 1 / 0;

@@ -3,7 +3,7 @@ package com.example.studyspringboot.service.impl;
 import com.example.studyspringboot.dao.UserInfoMapper;
 import com.example.studyspringboot.entity.UserInfo;
 import com.example.studyspringboot.exception.AppException;
-import com.example.studyspringboot.exception.AppExceptionCodeMsg;
+import com.example.studyspringboot.exception.ReturnCodeMsg;
 import com.example.studyspringboot.service.UserInfoService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -37,7 +37,7 @@ public class UserInfoServiceImpl implements UserInfoService {
     public Integer insertUser(UserInfo userInfo) {
         UserInfo u = selectByName(userInfo.getName());
         if (u != null) {
-            throw new AppException(AppExceptionCodeMsg.USERNAME_ALREADY_EXISTS);
+            throw new AppException(ReturnCodeMsg.USERNAME_ALREADY_EXISTS);
         }
         return userInfoMapper.insertUser(userInfo);
     }
