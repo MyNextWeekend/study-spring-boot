@@ -17,6 +17,7 @@ import javax.validation.ConstraintViolationException;
 import java.util.stream.Collectors;
 
 /**
+ * 应用程序异常处理程序
  * ControllerAdvice 拆分开来就是Controller Advice，
  * Advice：其是用于封装一个切面所有属性的，包括切入点和需要织入的切面逻辑。
  * ControllerAdvice：用于对Controller进行“切面”环绕的，而具体的业务织入方式则是通过结合其他的注解来实现的
@@ -24,6 +25,9 @@ import java.util.stream.Collectors;
  * 1、结合方法型注解@ExceptionHandler，用于捕获Controller中抛出的指定类型的异常，从而达到不同类型的异常区别处理的目的
  * 2、结合方法型注解@InitBinder，用于request中自定义参数解析方式进行注册，从而达到自定义指定格式参数的目的
  * 3、结合方法型注解@ModelAttribute，表示其标注的方法将会在目标Controller方法执行之前执行
+ *
+ * @author weekend
+ * @date 2024/01/27
  */
 
 // 此处使用 RestControllerAdvice = ControllerAdvice + ResponseBody
