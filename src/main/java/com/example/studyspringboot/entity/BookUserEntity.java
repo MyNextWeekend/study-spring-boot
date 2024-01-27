@@ -6,10 +6,7 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.Date;
 import java.util.List;
 
@@ -39,7 +36,6 @@ public class BookUserEntity {
     private Date birthday;
 
     @Valid
-    @NotNull(message = "用户图书不能为空")
-    @Size(min = 1, message = "最少输入一份图书")
+    @NotEmpty(message = "用户图书不能为空")
     private List<BookEntity> books;
 }
