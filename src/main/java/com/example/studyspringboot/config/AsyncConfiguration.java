@@ -24,7 +24,7 @@ public class AsyncConfiguration implements AsyncConfigurer {
     @Bean(name = "asyncPoolTaskExecutor") //线程池注册并取名
     public ThreadPoolTaskExecutor asyncPoolTaskExecutor() {
         ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
-        taskExecutor.setCorePoolSize(2);    //核心线程数
+        taskExecutor.setCorePoolSize(5);    //核心线程数
         taskExecutor.setMaxPoolSize(10);    //线程池维护线程的最大数量,只有在缓冲队列满了之后才会申请超过核心线程数的线程
         taskExecutor.setQueueCapacity(50);  //缓存队列
         taskExecutor.setKeepAliveSeconds(200);  //许的空闲时间,当超过了核心线程出之外的线程在空闲时间到达之后会被销毁
