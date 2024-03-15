@@ -101,16 +101,20 @@ public class ThreadPoolController {
      * 有返回值的调用异步方法
      */
     @PostMapping("/test03")
-    public Result<String> test03() throws ExecutionException, InterruptedException {
+    public Result<String> test03() {
         long start = System.currentTimeMillis();
         log.info("start...");
         CompletableFuture<String> future1 = threadService.test02();
         CompletableFuture<String> future2 = threadService.test02();
         CompletableFuture.allOf(future1, future2).join();
         log.info("等待结束耗时:{}", System.currentTimeMillis() - start);
-        String s1 = future1.get();
-        String s2 = future2.get();
-        log.info("s1:{},s2:{}", s1, s2);
+        try {
+            String s1 = future1.get();
+            String s2 = future2.get();
+            log.info("s1:{},s2:{}", s1, s2);
+        } catch (InterruptedException | ExecutionException e) {
+            log.error(e.getMessage(), e);
+        }
         log.info("最终拿到结果耗时:{}", System.currentTimeMillis() - start);
         return Result.success("test02");
     }
