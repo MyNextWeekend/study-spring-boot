@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 /**
  * 线程池学习
@@ -33,6 +34,10 @@ public class ThreadPoolController {
 
     /**
      * 往线程池提交任务
+     * submit()和execute()的区别
+     * 1. submit()返回的是Future对象，可以获取任务的执行结果，可以使用get()方法获取执行结果，也可以使用isDone()方法判断任务是否执行完成
+     * 2. execute()返回的是void，不能获取任务的执行结果，只能判断任务是否执行完成
+     * 3. submit()和execute()都可以将任务提交到线程池，但是submit()可以提交Runnable和Callable任务，execute()只能提交Runnable任务
      */
     @PostMapping("/test01")
     public Result<String> test01() {
@@ -54,6 +59,15 @@ public class ThreadPoolController {
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
+        });
+        Future<String> future = threadPoolTaskExecutor.submit(() -> {
+            try {
+                log.info("开始执行002");
+                Thread.sleep(4000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            return "hello";
         });
         CompletableFuture<Void> future1 = CompletableFuture.runAsync(() -> {
             try {
