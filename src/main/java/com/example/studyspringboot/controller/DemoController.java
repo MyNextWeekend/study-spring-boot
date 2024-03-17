@@ -1,6 +1,7 @@
 package com.example.studyspringboot.controller;
 
 import com.example.studyspringboot.common.Result;
+import com.example.studyspringboot.constant.Task;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,8 @@ public class DemoController {
         logger.info("do work 001 success");
         logger.info("do work 002 success");
         logger.info("do work 003 success");
+        logger.info("任务的类型是：" + Task.TypeEnum.AUDIO.getValue());
+        logger.info("任务的状态是：" + Task.StateEnum.SUCCESS.getCode());
         return Result.success();
     }
 }
