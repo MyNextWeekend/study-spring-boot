@@ -53,12 +53,11 @@
         ,last_login_date,phone_number,profile_description
         ,account_expiry_date)
         values
-            <foreach collection="list" item="item" index="index" separator=",">
-            (#{item.id,jdbcType=INTEGER},#{item.userId,jdbcType=INTEGER},#{item.age,jdbcType=INTEGER}
-               ,#{item.fullName,jdbcType=VARCHAR},#{item.email,jdbcType=VARCHAR},#{item.registrationDate,jdbcType=DATE}
-               ,#{item.lastLoginDate,jdbcType=DATE},#{item.phoneNumber,jdbcType=VARCHAR},#{item.profileDescription,jdbcType=VARCHAR}
-               ,#{item.accountExpiryDate,jdbcType=DATE})
-            </foreach>
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.id,jdbcType=INTEGER},#{item.userId,jdbcType=INTEGER},#{item.age,jdbcType=INTEGER},#{item.fullName,jdbcType=VARCHAR},
+            #{item.email,jdbcType=VARCHAR},#{item.registrationDate,jdbcType=DATE}, #{item.lastLoginDate,jdbcType=DATE},
+            #{item.phoneNumber,jdbcType=VARCHAR},#{item.profileDescription,jdbcType=VARCHAR},#{item.accountExpiryDate,jdbcType=DATE})
+        </foreach>
     </insert>
     <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.example.studyspringboot.entity.Userdetails" useGeneratedKeys="true">
         insert into UserDetails
