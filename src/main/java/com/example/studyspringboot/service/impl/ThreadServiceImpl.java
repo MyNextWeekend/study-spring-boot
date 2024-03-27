@@ -1,10 +1,16 @@
 package com.example.studyspringboot.service.impl;
 
+import com.example.studyspringboot.dao.UserdetailsMapper;
+import com.example.studyspringboot.entity.Userdetails;
 import com.example.studyspringboot.service.ThreadService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -16,6 +22,9 @@ import java.util.concurrent.CompletableFuture;
 @Slf4j
 @Service
 public class ThreadServiceImpl implements ThreadService {
+
+    @Autowired
+    private UserdetailsMapper userdetailsMapper;
 
     @Async("asyncPoolTaskExecutor")
     @Override
@@ -43,5 +52,32 @@ public class ThreadServiceImpl implements ThreadService {
             throw new RuntimeException(e);
         }
         return CompletableFuture.completedFuture("async ok");
+    }
+
+    public void addUserDetail() {
+        List<Userdetails> userdetails = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            Userdetails userdetail = new Userdetails();
+            userdetail.setUserId(i);
+            userdetail.setAge(i);
+            userdetail.setFullName("" + i);
+            userdetail.setEmail("" + i);
+            userdetail.setRegistrationDate(new Date());
+            userdetail.setLastLoginDate(new Date());
+            userdetail.setPhoneNumber("" + i);
+            userdetail.setProfileDescription("" + i);
+            userdetail.setAccountExpiryDate(new Date());
+            userdetails.add(userdetail);
+        }
+        int res = userdetailsMapper.insertAll(userdetails);
+        if (1 != res) {
+            log.error("插入失败");
+        }
+        log.info("插入成功");
+        for (Userdetails userdetail : userdetails) {
+            log.info("插入id:{}", userdetail.getId());
+            log.info("插入userId:{}", userdetail.getUserId());
+            log.info("插入fullName:{}", userdetail.getFullName());
+        }
     }
 }

@@ -6,4 +6,6 @@ public interface ThreadService {
     void test01();
 
     CompletableFuture<String> test02();
+
+    public void addUserDetail();
 }
