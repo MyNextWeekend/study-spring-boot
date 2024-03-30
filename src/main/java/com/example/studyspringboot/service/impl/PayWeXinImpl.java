@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 public class PayWeXinImpl extends PayTemplateImpl {
     @Override
     public Boolean equals(String payType) {
-        return  PayEnum.WE_XIN.getType().equals(payType);
+        return  PayEnum.WE_XIN.getPayType().equals(payType);
     }
 
     @Override

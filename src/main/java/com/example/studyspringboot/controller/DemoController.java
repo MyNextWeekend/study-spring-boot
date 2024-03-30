@@ -20,12 +20,12 @@ public class DemoController {
 
     @GetMapping("/hello")
     public Result<?> hello(@RequestParam Integer code) {
-        ModelTypeConstant.StateEnum byCode = ModelTypeConstant.StateEnum.getByCode(code);
-        if (byCode == null) {
+        ModelTypeConstant.StateEnum stateEnum = ModelTypeConstant.StateEnum.valueOf(code);
+        if (stateEnum == null) {
             logger.info("error");
             return Result.error(1, "error");
         }
-        switch (byCode) {
+        switch (stateEnum) {
             case SUCCESS:
             case FAIL:// 匹配多个分支
                 logger.info("FAIL");

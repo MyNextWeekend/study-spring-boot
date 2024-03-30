@@ -25,7 +25,7 @@ public class ModelTypeConstant {
             this.desc = desc;
         }
 
-        public static StateEnum getByCode(Integer code) {
+        public static StateEnum valueOf(Integer code) {
             if (code == null) {
                 return null;
             }
