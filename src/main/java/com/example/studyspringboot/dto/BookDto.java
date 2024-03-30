@@ -1,6 +1,7 @@
 package com.example.studyspringboot.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.hibernate.validator.constraints.Range;
 
@@ -16,6 +17,7 @@ import java.util.Date;
  * @date 2024/01/27
  */
 @Data
+@AllArgsConstructor
 public class BookDto {
     @NotBlank(message = "书名不能为空")
     private String name;
