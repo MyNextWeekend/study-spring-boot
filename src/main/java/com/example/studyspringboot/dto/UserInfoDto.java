@@ -7,13 +7,19 @@ import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.NotBlank;
 import javax.validation.groups.Default;
 
+/**
+ * 用户信息dto
+ *
+ * @author weekend
+ * @date 2024/03/30
+ */
 @Data
 public class UserInfoDto {
     private int id;
 
     @NotBlank(message = "账号不能为空", groups = Insert.class) // 指定规则对某一个分组生效
     @Length(message = "账号不能超过{max}个字符", max = 10)
-    private String user_name;
+    private String userName;
 
     private String name;
 
@@ -23,12 +29,12 @@ public class UserInfoDto {
     private String pwd;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+08:00")
-    private String create_time;
+    private String createTime;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+08:00")
-    private String update_time;
+    private String updateTime;
 
-    private Integer teacher_id;
+    private Integer teacherId;
 
     public interface Insert extends Default { // 声明分组标识 继承【Default】 没有分组标识的走Default
     }
