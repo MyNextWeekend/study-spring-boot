@@ -19,17 +19,15 @@ public class DemoController {
     private final Logger logger = LoggerFactory.getLogger(DemoController.class);
 
     @GetMapping("/hello")
-    public Result<?> hello( @RequestParam Integer code) {
+    public Result<?> hello(@RequestParam Integer code) {
         ModelTypeConstant.StateEnum byCode = ModelTypeConstant.StateEnum.getByCode(code);
-        if(byCode==null){
+        if (byCode == null) {
             logger.info("error");
-            return Result.error(1,"error");
+            return Result.error(1, "error");
         }
-        switch (byCode){
+        switch (byCode) {
             case SUCCESS:
-                logger.info("SUCCESS");
-                break;
-            case FAIL:
+            case FAIL:// 匹配多个分支
                 logger.info("FAIL");
                 break;
             case WAITING:

@@ -1,5 +1,7 @@
 package com.example.studyspringboot.constant;
 
+import lombok.Getter;
+
 /**
  * 模型类型常数
  *
@@ -7,6 +9,7 @@ package com.example.studyspringboot.constant;
  * @date 2024/01/27
  */
 public class ModelTypeConstant {
+    @Getter
     public enum StateEnum {
         INIT(0, "初始化"),
         RUNNING(1, "执行中"),
@@ -22,13 +25,6 @@ public class ModelTypeConstant {
             this.desc = desc;
         }
 
-        public int getCode() {
-            return code;
-        }
-
-        public String getDesc() {
-            return desc;
-        }
         public static StateEnum getByCode(Integer code) {
             if (code == null) {
                 return null;
