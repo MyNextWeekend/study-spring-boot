@@ -29,11 +29,11 @@ public class StreamController {
         list.add(new BookDto("test02", "test02", 2, "test02", new Date()));
         list.add(new BookDto("test03", "test03", 3, "test03", new Date()));
 
-        list.forEach(bookDto -> {
+        for (BookDto bookDto : list) {
             if("test01".equals(bookDto.getName())){
                 bookDto.setDescription("test01-update");
             }
-        });
+        }
         List<BookDto> collect = list.stream().filter(bookDto -> "test01".equals(bookDto.getName())).collect(Collectors.toList());
         log.info(collect.toString());
         log.info("test01");
