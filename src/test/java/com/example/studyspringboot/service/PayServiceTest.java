@@ -15,7 +15,7 @@ class PayServiceTest {
 
     @Test
     void pay() {
-        String PayType = PayEnum.BANK.getType();
+        String PayType = PayEnum.BANK.getPayType();
         for (PayService payService1 : payService) {
             if (payService1.equals(PayType)) {
                 payService1.pay(100);

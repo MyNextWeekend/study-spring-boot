@@ -114,6 +114,25 @@
             <artifactId>spring-boot-starter-freemarker</artifactId>
             <!-- <version>3.2.3</version> -->
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>4.1.1</version>
+        </dependency>
+        <!--处理2007 excel-->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>4.1.1</version>
+        </dependency>
+        <!-- 用于处理当前的word文档2007的老版本 -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-scratchpad</artifactId>
+            <version>4.1.1</version>
+        </dependency>
+
     </dependencies>
 
     <build>

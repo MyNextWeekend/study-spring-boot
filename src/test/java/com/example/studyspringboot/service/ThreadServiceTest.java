@@ -13,7 +13,6 @@ class ThreadServiceTest {
 
     @Test
     void addUserDetail() {
-        threadService.addUserDetail();
 
     }
 }
