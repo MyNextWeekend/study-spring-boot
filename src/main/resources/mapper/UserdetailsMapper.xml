@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.studyspringboot.mapper.UserdetailsMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.studyspringboot.entity.Userdetails">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="userId" column="user_id" jdbcType="INTEGER"/>
+            <result property="age" column="age" jdbcType="INTEGER"/>
+            <result property="fullName" column="full_name" jdbcType="VARCHAR"/>
+            <result property="email" column="email" jdbcType="VARCHAR"/>
+            <result property="registrationDate" column="registration_date" jdbcType="DATE"/>
+            <result property="lastLoginDate" column="last_login_date" jdbcType="DATE"/>
+            <result property="phoneNumber" column="phone_number" jdbcType="VARCHAR"/>
+            <result property="profileDescription" column="profile_description" jdbcType="VARCHAR"/>
+            <result property="accountExpiryDate" column="account_expiry_date" jdbcType="DATE"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,user_id,age,
+        full_name,email,registration_date,
+        last_login_date,phone_number,profile_description,
+        account_expiry_date
+    </sql>
+    <insert id="insertBatch">
+        insert into UserDetails(id,user_id,age,
+        full_name,email,registration_date,
+        last_login_date,phone_number,profile_description,
+        account_expiry_date)
+        values
+        <foreach collection="userdetailsCollection" item="item" separator=",">
+            (#{item.id,jdbcType=NUMERIC},#{item.userId,jdbcType=NUMERIC},#{item.age,jdbcType=NUMERIC},
+            #{item.fullName,jdbcType=VARCHAR},#{item.email,jdbcType=VARCHAR},#{item.registrationDate,jdbcType=TIMESTAMP},
+            #{item.lastLoginDate,jdbcType=TIMESTAMP},#{item.phoneNumber,jdbcType=VARCHAR},#{item.profileDescription,jdbcType=VARCHAR},
+            #{item.accountExpiryDate,jdbcType=TIMESTAMP})
+        </foreach>
+    </insert>
+</mapper>
