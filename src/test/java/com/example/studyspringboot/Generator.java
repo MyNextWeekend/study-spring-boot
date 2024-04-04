@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.generator.FastAutoGenerator;
 import com.baomidou.mybatisplus.generator.config.OutputFile;
+import com.baomidou.mybatisplus.generator.config.rules.DateType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import com.baomidou.mybatisplus.generator.fill.Column;
@@ -29,7 +30,9 @@ public class Generator {
                 .globalConfig(builder -> {
                     builder.author("MyNextWeekend")    // 设置author
                             .enableSwagger()    // 添加Swagger注解
-                            // .fileOverride()
+                            .dateType(DateType.ONLY_DATE) // 设置日期类型
+                            .disableOpenDir()
+                            .fileOverride()
                             .outputDir(path);  // 设置路径
                 })
                 .packageConfig(builder -> {
