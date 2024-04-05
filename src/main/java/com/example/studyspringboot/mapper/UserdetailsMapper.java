@@ -1,21 +1,25 @@
 package com.example.studyspringboot.mapper;
 
 import com.example.studyspringboot.entity.Userdetails;
-import org.apache.ibatis.annotations.Param;
-
-import java.util.Collection;
 
 /**
 * @author weekend
 * @description 针对表【UserDetails】的数据库操作Mapper
-* @createDate 2024-04-03 20:11:02
+* @createDate 2024-04-05 11:03:23
 * @Entity com.example.studyspringboot.entity.Userdetails
 */
 public interface UserdetailsMapper {
-    int insertBatch(@Param("userdetailsCollection") Collection<Userdetails> userdetailsCollection);
+
+    int deleteByPrimaryKey(Long id);
+
+    int insert(Userdetails record);
+
+    int insertSelective(Userdetails record);
+
+    Userdetails selectByPrimaryKey(Long id);
+
+    int updateByPrimaryKeySelective(Userdetails record);
+
+    int updateByPrimaryKey(Userdetails record);
 
 }
-
-
-
-

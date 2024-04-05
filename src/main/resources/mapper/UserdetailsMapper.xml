@@ -23,17 +23,101 @@
         last_login_date,phone_number,profile_description,
         account_expiry_date
     </sql>
-    <insert id="insertBatch">
-        insert into UserDetails(id,user_id,age,
-        full_name,email,registration_date,
-        last_login_date,phone_number,profile_description,
-        account_expiry_date)
-        values
-        <foreach collection="userdetailsCollection" item="item" separator=",">
-            (#{item.id,jdbcType=NUMERIC},#{item.userId,jdbcType=NUMERIC},#{item.age,jdbcType=NUMERIC},
-            #{item.fullName,jdbcType=VARCHAR},#{item.email,jdbcType=VARCHAR},#{item.registrationDate,jdbcType=TIMESTAMP},
-            #{item.lastLoginDate,jdbcType=TIMESTAMP},#{item.phoneNumber,jdbcType=VARCHAR},#{item.profileDescription,jdbcType=VARCHAR},
-            #{item.accountExpiryDate,jdbcType=TIMESTAMP})
-        </foreach>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from UserDetails
+        where  id = #{id,jdbcType=INTEGER} 
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from UserDetails
+        where  id = #{id,jdbcType=INTEGER} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.example.studyspringboot.entity.Userdetails" useGeneratedKeys="true">
+        insert into UserDetails
+        ( id,user_id,age
+        ,full_name,email,registration_date
+        ,last_login_date,phone_number,profile_description
+        ,account_expiry_date)
+        values (#{id,jdbcType=INTEGER},#{userId,jdbcType=INTEGER},#{age,jdbcType=INTEGER}
+        ,#{fullName,jdbcType=VARCHAR},#{email,jdbcType=VARCHAR},#{registrationDate,jdbcType=DATE}
+        ,#{lastLoginDate,jdbcType=DATE},#{phoneNumber,jdbcType=VARCHAR},#{profileDescription,jdbcType=VARCHAR}
+        ,#{accountExpiryDate,jdbcType=DATE})
     </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.example.studyspringboot.entity.Userdetails" useGeneratedKeys="true">
+        insert into UserDetails
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="id != null">id,</if>
+                <if test="userId != null">user_id,</if>
+                <if test="age != null">age,</if>
+                <if test="fullName != null">full_name,</if>
+                <if test="email != null">email,</if>
+                <if test="registrationDate != null">registration_date,</if>
+                <if test="lastLoginDate != null">last_login_date,</if>
+                <if test="phoneNumber != null">phone_number,</if>
+                <if test="profileDescription != null">profile_description,</if>
+                <if test="accountExpiryDate != null">account_expiry_date,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="id != null">#{id,jdbcType=INTEGER},</if>
+                <if test="userId != null">#{userId,jdbcType=INTEGER},</if>
+                <if test="age != null">#{age,jdbcType=INTEGER},</if>
+                <if test="fullName != null">#{fullName,jdbcType=VARCHAR},</if>
+                <if test="email != null">#{email,jdbcType=VARCHAR},</if>
+                <if test="registrationDate != null">#{registrationDate,jdbcType=DATE},</if>
+                <if test="lastLoginDate != null">#{lastLoginDate,jdbcType=DATE},</if>
+                <if test="phoneNumber != null">#{phoneNumber,jdbcType=VARCHAR},</if>
+                <if test="profileDescription != null">#{profileDescription,jdbcType=VARCHAR},</if>
+                <if test="accountExpiryDate != null">#{accountExpiryDate,jdbcType=DATE},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.example.studyspringboot.entity.Userdetails">
+        update UserDetails
+        <set>
+                <if test="userId != null">
+                    user_id = #{userId,jdbcType=INTEGER},
+                </if>
+                <if test="age != null">
+                    age = #{age,jdbcType=INTEGER},
+                </if>
+                <if test="fullName != null">
+                    full_name = #{fullName,jdbcType=VARCHAR},
+                </if>
+                <if test="email != null">
+                    email = #{email,jdbcType=VARCHAR},
+                </if>
+                <if test="registrationDate != null">
+                    registration_date = #{registrationDate,jdbcType=DATE},
+                </if>
+                <if test="lastLoginDate != null">
+                    last_login_date = #{lastLoginDate,jdbcType=DATE},
+                </if>
+                <if test="phoneNumber != null">
+                    phone_number = #{phoneNumber,jdbcType=VARCHAR},
+                </if>
+                <if test="profileDescription != null">
+                    profile_description = #{profileDescription,jdbcType=VARCHAR},
+                </if>
+                <if test="accountExpiryDate != null">
+                    account_expiry_date = #{accountExpiryDate,jdbcType=DATE},
+                </if>
+        </set>
+        where   id = #{id,jdbcType=INTEGER} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.example.studyspringboot.entity.Userdetails">
+        update UserDetails
+        set 
+            user_id =  #{userId,jdbcType=INTEGER},
+            age =  #{age,jdbcType=INTEGER},
+            full_name =  #{fullName,jdbcType=VARCHAR},
+            email =  #{email,jdbcType=VARCHAR},
+            registration_date =  #{registrationDate,jdbcType=DATE},
+            last_login_date =  #{lastLoginDate,jdbcType=DATE},
+            phone_number =  #{phoneNumber,jdbcType=VARCHAR},
+            profile_description =  #{profileDescription,jdbcType=VARCHAR},
+            account_expiry_date =  #{accountExpiryDate,jdbcType=DATE}
+        where   id = #{id,jdbcType=INTEGER} 
+    </update>
 </mapper>
